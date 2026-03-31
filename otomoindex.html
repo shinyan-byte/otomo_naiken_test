@@ -42,12 +42,13 @@ body{
 /* ── HERO CENTER (サービス名・上下中央) ── */
 .hero-center{
   position:absolute;
-  inset:0;
+  top:0;left:0;right:0;
+  height:100svh;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  padding-bottom:25vh;
+  padding-bottom:12vh;
   z-index:2;
   gap:6px;
   text-align:center;
@@ -91,7 +92,7 @@ body{
 /* ── HERO ── */
 .hero{
   position:relative;
-  height:190svh;
+  height:160svh;
   min-height:900px;
   overflow:visible;
   background:transparent;
@@ -115,8 +116,9 @@ body{
 
 .hero-content{
   position:absolute;
-  bottom:0;left:0;right:0;
-  padding:0 24px 52px;
+  top:100svh;
+  left:0;right:0;
+  padding:8px 24px 52px;
   z-index:2;
 }
 
@@ -151,9 +153,23 @@ body{
 .hero-chat{
   display:flex;
   flex-direction:column;
-  gap:8px;
+  gap:32px;
   margin-bottom:20px;
 }
+
+.hero-chat .chat-bubble-wrap{
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity .5s ease, transform .5s ease;
+}
+.hero-chat .chat-bubble-wrap.on{
+  opacity:1;
+  transform:translateY(0);
+}
+.hero-chat .chat-bubble-wrap:nth-child(1){ transition-delay:.0s; }
+.hero-chat .chat-bubble-wrap:nth-child(2){ transition-delay:.15s; }
+.hero-chat .chat-bubble-wrap:nth-child(3){ transition-delay:.3s; }
+.hero-chat .chat-bubble-wrap:nth-child(4){ transition-delay:.45s; }
 
 .chat-bubble-wrap{
   display:flex;
@@ -886,7 +902,7 @@ footer{
 
       <div class="chat-bubble-wrap bubble-wrap-right">
         <div class="chat-bubble bubble-right">
-          築18年・56㎡・3LDKで<br>駅から7分なんです。<br>立地はいいんですが<br>広さが足りるか不安で…
+          この物件気になってます（URL）<br>立地はいいんですが築年数もそこそこで<br>管理状態がどうなのか不安で…
         </div>
         <div class="chat-avatar">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -939,7 +955,7 @@ footer{
 <div class="wrap">
   <div class="s-intro rv" id="for-you">
     <p class="s-kicker">For You</p>
-    <p class="s-tagline">あなたの内見に、おともします☺️</p>
+    <p class="s-tagline">あなたの内見に、おともします 🕊</p>
   </div>
 
   <div class="check-list rv d2">
@@ -965,7 +981,7 @@ footer{
       <div class="check-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       </div>
-      <p class="check-text">仲介会社は親切だが、中立に見てくれているか判断しにくい</p>
+      <p class="check-text">今まで出会った担当者に相談しにくい</p>
     </div>
     <div class="check-item">
       <div class="check-icon">
@@ -1189,7 +1205,7 @@ footer{
 <script>
   // Safe scroll reveal using requestAnimationFrame
   function checkReveal() {
-    var elements = document.querySelectorAll('.rv');
+    var elements = document.querySelectorAll('.rv, .hero-chat .chat-bubble-wrap');
     var windowHeight = window.innerHeight;
     for (var i = 0; i < elements.length; i++) {
       var el = elements[i];
